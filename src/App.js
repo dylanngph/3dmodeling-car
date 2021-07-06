@@ -48,8 +48,25 @@ const Tent = styled(Box)`
     top: 340px;
     transition: 1.5s;
     z-index: 10;
-    opacity:0;
     visibility:hidden;
+    opacity:0;
+`
+const Scrollbar = styled(Box)`
+    height: 150px;
+    width: 6px;
+    position: absolute;
+    bottom: 55px;
+    left: 95px;
+    background-color: hsla(0,0%,93.3%,.2);
+    border-radius: 5px;
+    transition:1.5s;
+`
+const ScrollBarItem = styled(Box)`
+    width: 100%;
+    height: 50px;
+    background-color: hsla(0,0%,100%,.7);
+    transition: 1.5s;
+    border-radius: 5px;
 `
 function App() {
   const [ready, setReady] = React.useState(true);
@@ -126,6 +143,14 @@ function App() {
         })}>
           <img src="/tent.png" alt="Tent" />
         </Tent>
+        <Scrollbar className={clsx({
+          'scrollbar-position-1': step === 1,
+          'scrollbar-position-2': step === 2,
+        })}>
+          <ScrollBarItem className={clsx({
+            'scrollbar-item-position-2': step === 3
+          })} />
+        </Scrollbar>
       </div>
     </div>
   );
