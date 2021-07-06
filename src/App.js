@@ -69,26 +69,36 @@ const ScrollBarItem = styled(Box)`
     border-radius: 5px;
 `
 function App() {
+  //Biến ready kiểm tra xem Section đã scroll hết chưa và delay lại cho smooth scroll
   const [ready, setReady] = React.useState(true);
-  const [step, setStep] = React.useState(1);
+
+
+  //Biến SectionID dùng để trỏ đến các Section đang hiện hành và xác định vị trí
+  const [SectionID, setSectionID] = React.useState(1);
+
+
+  //Hàm handleWheel xử lí event khi cuộn chuột
   const handleWheel = React.useCallback((event) => {
     // react hooks
     if (ready) {
-      setReady(false);
+      setReady(false);//Tắt biến ready vì section chưa scroll hết
       if (event.deltaY < 0) {
-        setStep(state => {
-          if (state === 1) return 1;
+        setSectionID(state => {
+          if (state === 1) return 1;//Giới hạn SectionID không thể nhỏ hơn 1
           return state - 1;
         });
       } else {
-        setStep(state => {
-          if (state === 3) return 3;
+        setSectionID(state => {
+          if (state === 3) return 3; //Giới hạn SectionID không thể lớn hơn 3
           return state + 1
         });
       }
     }
-  }, [ready])
+  }, [ready]) // Hook useCallBack lắng nghe biến ready
 
+
+
+  //Hàm useEffect dùng để delay tiến trình không cho cuộn quá nhanh tránh trường hợp đè chồng
   React.useEffect(() => {
     if (!ready) {
       setTimeout(() => {
@@ -96,16 +106,17 @@ function App() {
       }, 500)
     }
   }, [ready])
-  console.log('step', step);
+  console.log('SectionID', SectionID);
   console.log('ready', ready);
+
   return (
     <div className="body">
       <div className="screen" onWheel={handleWheel}>
         <Navbar />
         <Section1 className={
           clsx({
-            show: step === 1,
-            after: step > 1,
+            show: SectionID === 1,
+            after: SectionID > 1,
           })
         } >
           <Title1 />
@@ -113,9 +124,9 @@ function App() {
         </Section1>
         <Section2 className={
           clsx({
-            show: step === 2,
-            after2: step > 2,
-            before: step < 2
+            show: SectionID === 2,
+            after2: SectionID > 2,
+            before: SectionID < 2
           })
         }>
           <Title2 />
@@ -123,32 +134,32 @@ function App() {
         </Section2>
         <Section3 className={
           clsx({
-            show: step === 3,
-            before: step < 3
+            show: SectionID === 3,
+            before: SectionID < 3
           })
         }>
           <CarDetail />
         </Section3>
         <Car className={clsx({
-          'car-position-1': step === 1,
-          'car-position-2': step === 2,
-          'car-position-3': step === 3
+          'car-position-1': SectionID === 1,
+          'car-position-2': SectionID === 2,
+          'car-position-3': SectionID === 3
         })}>
           <img src="/gt-img.png" alt="CarImage" />
         </Car>
         <Tent className={clsx({
-          'tent-position-1': step === 1,
-          'tent-position-2': step === 2,
-          'tent-position-3': step === 3
+          'tent-position-1': SectionID === 1,
+          'tent-position-2': SectionID === 2,
+          'tent-position-3': SectionID === 3
         })}>
           <img src="/tent.png" alt="Tent" />
         </Tent>
         <Scrollbar className={clsx({
-          'scrollbar-position-1': step === 1,
-          'scrollbar-position-2': step === 2,
+          'scrollbar-position-1': SectionID === 1,
+          'scrollbar-position-2': SectionID === 2,
         })}>
           <ScrollBarItem className={clsx({
-            'scrollbar-item-position-2': step === 3
+            'scrollbar-item-position-2': SectionID === 3
           })} />
         </Scrollbar>
       </div>
