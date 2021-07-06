@@ -8,6 +8,7 @@ import { Action } from './component/Action';
 import { Navbar } from './component/Navbar';
 import { Title2 } from './component/Title2';
 import { FloatContent } from './component/FloatContent';
+import { CarDetail } from './component/CarDetail';
 
 const Section1 = styled(Box)`
   height:100%;
@@ -36,6 +37,19 @@ const Car = styled(Box)`
     transition: 1.5s;
     width: 700px;
   }
+`
+const Tent = styled(Box)`
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 320px;
+    top: 340px;
+    transition: 1.5s;
+    z-index: 10;
+    opacity:0;
+    visibility:hidden;
 `
 function App() {
   const [ready, setReady] = React.useState(true);
@@ -95,10 +109,23 @@ function App() {
             show: step === 3,
             before: step < 3
           })
-        } />
-        <Car>
+        }>
+          <CarDetail />
+        </Section3>
+        <Car className={clsx({
+          'car-position-1': step === 1,
+          'car-position-2': step === 2,
+          'car-position-3': step === 3
+        })}>
           <img src="/gt-img.png" alt="CarImage" />
         </Car>
+        <Tent className={clsx({
+          'tent-position-1': step === 1,
+          'tent-position-2': step === 2,
+          'tent-position-3': step === 3
+        })}>
+          <img src="/tent.png" alt="Tent" />
+        </Tent>
       </div>
     </div>
   );

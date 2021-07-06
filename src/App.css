@@ -144,3 +144,47 @@
       height: 155px;
   }
 }
+@keyframes fadeInDetail{
+  0% {
+    display: none;
+    color: #ddd;
+  }
+  1% {
+      display: block;
+  }
+  100% {
+      display: block;
+      max-height: 152px;
+  }
+}
+.car-position-1{
+  transform: translate(0,0);
+}
+.car-position-2{
+  transform: translateX(-185px) scale(.9);
+}
+.car-position-3{
+  transform: translate(-150px,-250px) scale(.7);
+}
+@keyframes tendFadeIn{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.tent-position-1{
+  transition: .5s;
+  transform: translateX(200px);
+}
+.tent-position-2{
+  opacity: 1!important;
+  visibility: visible!important;
+  transform: translateX(-50px);
+}
+.tent-position-3{
+  transform: translate(-90px,-279px) scale(.8);
+  opacity: 1!important;
+  visibility: visible!important;
+}
