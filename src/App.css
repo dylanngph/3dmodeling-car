@@ -24,20 +24,20 @@
   to {opacity: 0;}
 }
 .show {
-  transition: all ease 1.5s;
+  transition: all ease 1s;
   transform: translateY(0);
 }
 .after{
-  transition: all ease 1.5s;
+  transition: all ease 1s;
   transform: translateY(-100%);
   animation: FadeOut 1s ease-out;
 }
 .after2{
-  transition: all ease 1.5s;
+  transition: all ease 1s;
   transform: translateY(-40%);
 }
 .before{
-  transition: all ease 1.5s;
+  transition: all ease 1s;
   transform: translateY(100%);
 }
 @keyframes fadeIn1 {

@@ -103,7 +103,7 @@ function App() {
     if (!ready) {
       setTimeout(() => {
         setReady(true);
-      }, 500)
+      }, 1000)
     }
   }, [ready])
   console.log('SectionID', SectionID);
