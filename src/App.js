@@ -9,6 +9,7 @@ import { Navbar } from './component/Navbar';
 import { Title2 } from './component/Title2';
 import { FloatContent } from './component/FloatContent';
 import { CarDetail } from './component/CarDetail';
+import { CarModel } from './model/Car'
 
 const Section1 = styled(Box)`
   height:100%;
@@ -33,10 +34,6 @@ const Car = styled(Box)`
   left: 0;
   top: 300px;
   transition: 1.5s;
-  img {
-    transition: 1.5s;
-    width: 700px;
-  }
 `
 const Tent = styled(Box)`
     width: 100%;
@@ -63,7 +60,7 @@ const Scrollbar = styled(Box)`
 `
 const ScrollBarItem = styled(Box)`
     width: 100%;
-    height: 50px;
+    height: 75px;
     background-color: hsla(0,0%,100%,.7);
     transition: 1.5s;
     border-radius: 5px;
@@ -103,7 +100,7 @@ function App() {
     if (!ready) {
       setTimeout(() => {
         setReady(true);
-      }, 1000)
+      }, 1300)
     }
   }, [ready])
   console.log('SectionID', SectionID);
@@ -145,7 +142,7 @@ function App() {
           'car-position-2': SectionID === 2,
           'car-position-3': SectionID === 3
         })}>
-          <img src="/gt-img.png" alt="CarImage" />
+          <CarModel/>
         </Car>
         <Tent className={clsx({
           'tent-position-1': SectionID === 1,
