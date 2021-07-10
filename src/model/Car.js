@@ -25,7 +25,7 @@ export const CarModel = () => {
         <Canvas camera={{position: [-5, 2, 5] , fov: 18 }}>
             <Suspense fallback={null}>
             <Model/>
-            <ContactShadows rotation-x={Math.PI / 2} position={[0, -4.5, 0]} opacity={1} width={20} height={20} blur={2} far={4.5} />
+            <ContactShadows rotation-x={Math.PI / 2} position={[0.05, -0.3, 0]} opacity={1} width={20} height={20} blur={0.9} far={0.3} />
             <OrbitControls  enableZoom={false} />
             <Environment preset="city" />
             </Suspense>

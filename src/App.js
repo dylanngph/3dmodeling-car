@@ -32,7 +32,7 @@ const Car = styled(Box)`
   justify-content: center;
   position: absolute;
   left: 0;
-  top: 300px;
+  top: 280px;
   transition: 1.5s;
 `
 const Tent = styled(Box)`
