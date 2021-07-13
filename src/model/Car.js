@@ -18,7 +18,7 @@ export const CarModel = () => {
             <Suspense fallback={null}>
             <Model/>
             <ContactShadows rotation-x={Math.PI / 2} position={[0.05, -0.3, 0]} opacity={1} width={20} height={20} blur={0.9} far={0.3} />
-            <OrbitControls  enableZoom={false} />
+            <OrbitControls enableRotate={false}  enableZoom={false} />
             <Environment preset="city" />
             </Suspense>
         </Canvas>
