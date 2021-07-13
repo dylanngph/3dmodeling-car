@@ -13,7 +13,7 @@ const CarScene = styled(Box)`
 export const CarModel = () => {
     return (
     <CarScene>
-        <Canvas camera={{position: [-5, 4, 4] , fov: 17 }}>
+        <Canvas camera={{position: [-5, 0.3, 8] , fov: 10 }}>
         <fog attach="fog" args={['#fff', 0 , 40]} />
             <Suspense fallback={null}>
             <Model/>
