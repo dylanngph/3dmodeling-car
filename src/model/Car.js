@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { useLoader } from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Environment, OrbitControls , ContactShadows } from "@react-three/drei"
-import {Box} from '@material-ui/core'
+import { Box } from '@material-ui/core'
+import Model from '../component/Scene'
 import styled from '@emotion/styled'
 
 const CarScene = styled(Box)`
@@ -11,18 +10,11 @@ const CarScene = styled(Box)`
     width:100%;
 `
 
-function Model() {
-    const gltf = useLoader(GLTFLoader, './scene.gltf')
-    return (
-      <>
-        <primitive object={gltf.scene} scale={1.5}/>
-      </>
-    )
-  }
 export const CarModel = () => {
     return (
     <CarScene>
-        <Canvas camera={{position: [-5, 3, 5] , fov: 16 }}>
+        <Canvas camera={{position: [-5, 4, 4] , fov: 17 }}>
+        <fog attach="fog" args={['#fff', 0 , 40]} />
             <Suspense fallback={null}>
             <Model/>
             <ContactShadows rotation-x={Math.PI / 2} position={[0.05, -0.3, 0]} opacity={1} width={20} height={20} blur={0.9} far={0.3} />
