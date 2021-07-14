@@ -9,8 +9,10 @@ title: Range Rover Evoque
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { useSpring, a } from '@react-spring/three'
 
 export default function Model(props) {
+  const {sectionID} = props;
   const group = useRef();
   const wheel1 = useRef();
   const wheel2 = useRef();
@@ -19,15 +21,19 @@ export default function Model(props) {
 
   useFrame((state)=>{
     const t = state.clock.getElapsedTime();
-    wheel1.current.rotation.x = t * 5 * Math.PI;
-    wheel2.current.rotation.x = t * 5 * Math.PI;
-    wheel3.current.rotation.x = t * 5 * Math.PI;
-    wheel4.current.rotation.x = t * 5 * Math.PI;
+    wheel1.current.rotation.x = sectionID === 1 && t * 5 * Math.PI;
+    wheel2.current.rotation.x = sectionID === 1 && t * 5 * Math.PI;
+    wheel3.current.rotation.x = sectionID === 1 && t * 5 * Math.PI;
+    wheel4.current.rotation.x =  sectionID === 1 && t * 5 * Math.PI;
+   
   });
-
+  const carAnimation = useSpring({
+      rotation: sectionID === 1 ? [0,0,0] : sectionID===2 ? [0,-0.1,0] : [0,0.3,0] ,
+  });
+  console.log(carAnimation)
   const { nodes, materials } = useGLTF('../scene.gltf')
   return (
-    <group ref={group} {...props} dispose={null}>
+    <a.group ref={group} {...props} dispose={null} rotation={carAnimation.rotation}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={0.01}>
           <group rotation={[Math.PI / 2, 0, 0]}>
@@ -139,7 +145,7 @@ export default function Model(props) {
           </group>
         </group>
       </group>
-    </group>
+    </a.group>
   )
 }
 

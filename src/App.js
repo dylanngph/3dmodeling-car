@@ -142,7 +142,7 @@ function App() {
           'car-position-2': SectionID === 2,
           'car-position-3': SectionID === 3
         })}>
-          <CarModel/>
+          <CarModel sectionID={SectionID}/>
         </Car>
         <Tent className={clsx({
           'tent-position-1': SectionID === 1,
