@@ -173,7 +173,7 @@
   transform: translateX(-185px);
 }
 .car-position-3 {
-  transform: translate(-150px, -250px) scale(0.8);
+  transform: translate(-180px, -270px) scale(0.8);
 }
 @keyframes tendFadeIn {
   from {
@@ -185,12 +185,12 @@
 }
 .tent-position-1 {
   transition: 0.5s;
-  transform: translateX(200px);
+  transform: translateX(80px);
 }
 .tent-position-2 {
   opacity: 1 !important;
   visibility: visible !important;
-  transform: translateX(-30px);
+  transform: translateX(-20px);
 }
 .tent-position-3 {
   transform: translate(-90px, -230px) scale(0.8);
@@ -206,4 +206,33 @@
 .scrollbar-item-position-2 {
   transform: translateY(75px);
   opacity: 1 !important;
+}
+.ground-pos-1 {
+  height: 40%;
+}
+.ground-pos-2 {
+  height: 45%;
+  background: linear-gradient(
+    360deg,
+    rgba(228, 158, 25, 1) 0%,
+    rgb(221, 181, 51) 30%,
+    rgba(216, 189, 53, 1) 100%
+  );
+}
+.ground-pos-3 {
+  height: 80%;
+  background: linear-gradient(
+    360deg,
+    rgb(245, 167, 23) 0%,
+    rgb(235, 187, 31) 60%,
+    rgba(216, 189, 53, 1) 100%
+  );
+}
+.overlay-pos-1 {
+  opacity: 0;
+  height: 0;
+}
+.overlay-pos-2 {
+  opacity: 0.2;
+  height: 30%;
 }

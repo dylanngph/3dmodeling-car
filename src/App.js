@@ -16,8 +16,32 @@ const Section = styled(Box)`
   height:100%;
   width:100%;
   position:absolute;
+  z-index: 3;
 `
-
+const Ground = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  transition: 1.5s;
+  background: linear-gradient(360deg,
+    rgba(228, 158, 25, 1) 0%,
+    rgb(221, 181, 51) 20%,
+    rgba(216, 189, 53, 1) 100%);
+  opacity: 0.2;
+`
+const GroundOverlay = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  transition: 1.5s;
+  background: linear-gradient(360deg, rgba(228,158,25,1) 0%, rgba(203,163,44,1) 100%);
+`
 const Car = styled(Box)`
   width: 100%;
   display: flex;
@@ -25,7 +49,7 @@ const Car = styled(Box)`
   position: absolute;
   left: 0;
   top: 280px;
-  z-index: 2;
+  z-index: 5;
   transition: 1.5s;
 `
 const Tent = styled(Box)`
@@ -34,10 +58,10 @@ const Tent = styled(Box)`
     display: flex;
     justify-content: center;
     position: absolute;
-    left: 320px;
-    top: 150px;
+    left: 350px;
+    top: 160px;
     transition: 1.5s;
-    z-index: 1;
+    z-index: 4;
     visibility:hidden;
     opacity:0;
 `
@@ -50,6 +74,7 @@ const Scrollbar = styled(Box)`
     background-color: hsla(0,0%,93.3%,.2);
     border-radius: 5px;
     transition:1.5s;
+    z-index: 3;
 `
 const ScrollBarItem = styled(Box)`
     width: 100%;
@@ -57,6 +82,7 @@ const ScrollBarItem = styled(Box)`
     background-color: hsla(0,0%,100%,.7);
     transition: 1.5s;
     border-radius: 5px;
+    z-index: 3;
 `
 function App() {
   //Biến ready kiểm tra xem Section đã scroll hết chưa và delay lại cho smooth scroll
@@ -130,6 +156,19 @@ function App() {
         }>
           <CarDetail />
         </Section>
+
+        <Ground className={clsx({
+            'ground-pos-1' : SectionID < 3,
+            'ground-pos-2' : SectionID ===3,
+            'ground-pos-3' : SectionID ===4,
+        })}
+        />
+        <GroundOverlay className={clsx({
+            'overlay-pos-1' : SectionID < 4,
+            'overlay-pos-2' : SectionID ===4,
+        })}
+        />
+
         <Car className={clsx({
           'car-position-1': SectionID === 1,
           'car-position-2': SectionID === 3,
@@ -138,7 +177,7 @@ function App() {
           <CarModel sectionID={SectionID}/>
         </Car>
         <Tent className={clsx({
-          'tent-position-1': SectionID === 1,
+          'tent-position-1': SectionID < 3,
           'tent-position-2': SectionID === 3,
           'tent-position-3': SectionID === 4
         })}>
