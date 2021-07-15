@@ -21,17 +21,17 @@ export default function Model(props) {
 
   useFrame((state)=>{
     const t = state.clock.getElapsedTime();
-    wheel1.current.rotation.x = sectionID === 1 && t * 5 * Math.PI;
-    wheel2.current.rotation.x = sectionID === 1 && t * 5 * Math.PI;
-    wheel3.current.rotation.x = sectionID === 1 && t * 5 * Math.PI;
-    wheel4.current.rotation.x =  sectionID === 1 && t * 5 * Math.PI;
+    wheel1.current.rotation.x = sectionID < 3 && t * 5 * Math.PI;
+    wheel2.current.rotation.x = sectionID < 3 && t * 5 * Math.PI;
+    wheel3.current.rotation.x = sectionID < 3 && t * 5 * Math.PI;
+    wheel4.current.rotation.x =  sectionID < 3 && t * 5 * Math.PI;
    
   });
   const carAnimation = useSpring({
-      rotation: sectionID === 1 ? [0,0,0] : sectionID===2 ? [0,-0.1,0] : [0,0.3,0] ,
+      rotation: sectionID === 1 ? [0,0,0] : [0,0.2,0]
   });
   console.log(carAnimation)
-  const { nodes, materials } = useGLTF('../scene.gltf')
+  const { nodes, materials } = useGLTF('../../car/scene.gltf')
   return (
     <a.group ref={group} {...props} dispose={null} rotation={carAnimation.rotation}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -149,4 +149,4 @@ export default function Model(props) {
   )
 }
 
-useGLTF.preload('../scene.gltf')
+useGLTF.preload('../../car/scene.gltf')

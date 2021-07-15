@@ -10,22 +10,14 @@ import { Title2 } from './component/Title2';
 import { FloatContent } from './component/FloatContent';
 import { CarDetail } from './component/CarDetail';
 import { CarModel } from './model/Car'
+import { TentModel } from './model/Tent'
 
-const Section1 = styled(Box)`
+const Section = styled(Box)`
   height:100%;
   width:100%;
   position:absolute;
 `
-const Section2 = styled(Box)`
-  height:100%;
-  width:100%;
-  position:absolute;
-`
-const Section3 = styled(Box)`
-  height:100%;
-  width:100%;
-  position:absolute;
-`
+
 const Car = styled(Box)`
   width: 100%;
   display: flex;
@@ -33,6 +25,7 @@ const Car = styled(Box)`
   position: absolute;
   left: 0;
   top: 280px;
+  z-index: 2;
   transition: 1.5s;
 `
 const Tent = styled(Box)`
@@ -42,9 +35,9 @@ const Tent = styled(Box)`
     justify-content: center;
     position: absolute;
     left: 320px;
-    top: 340px;
+    top: 150px;
     transition: 1.5s;
-    z-index: 10;
+    z-index: 1;
     visibility:hidden;
     opacity:0;
 `
@@ -86,7 +79,7 @@ function App() {
         });
       } else {
         setSectionID(state => {
-          if (state === 3) return 3; //Giới hạn SectionID không thể lớn hơn 3
+          if (state === 4) return 4; //Giới hạn SectionID không thể lớn hơn 3
           return state + 1
         });
       }
@@ -100,7 +93,7 @@ function App() {
     if (!ready) {
       setTimeout(() => {
         setReady(true);
-      }, 1300)
+      }, 1000)
     }
   }, [ready])
   console.log('SectionID', SectionID);
@@ -110,53 +103,53 @@ function App() {
     <div className="body">
       <div className="screen" onWheel={handleWheel}>
         <Navbar />
-        <Section1 className={
+        <Section id="section-01" className={
           clsx({
-            show: SectionID === 1,
-            after: SectionID > 1,
+            show: SectionID < 3,
+            after: SectionID > 2,
           })
         } >
           <Title1 />
           <Action />
-        </Section1>
-        <Section2 className={
+        </Section>
+        <Section id="section-03" className={
           clsx({
-            show: SectionID === 2,
-            after2: SectionID > 2,
-            before: SectionID < 2
+            show: SectionID === 3,
+            after2: SectionID > 3,
+            before: SectionID < 3
           })
         }>
           <Title2 />
           <FloatContent />
-        </Section2>
-        <Section3 className={
+        </Section>
+        <Section id="section-04" className={
           clsx({
-            show: SectionID === 3,
-            before: SectionID < 3
+            show: SectionID === 4,
+            before: SectionID < 4
           })
         }>
           <CarDetail />
-        </Section3>
+        </Section>
         <Car className={clsx({
           'car-position-1': SectionID === 1,
-          'car-position-2': SectionID === 2,
-          'car-position-3': SectionID === 3
+          'car-position-2': SectionID === 3,
+          'car-position-3': SectionID === 4
         })}>
           <CarModel sectionID={SectionID}/>
         </Car>
         <Tent className={clsx({
           'tent-position-1': SectionID === 1,
-          'tent-position-2': SectionID === 2,
-          'tent-position-3': SectionID === 3
+          'tent-position-2': SectionID === 3,
+          'tent-position-3': SectionID === 4
         })}>
-          <img src="/tent.png" alt="Tent" />
+          <TentModel/>
         </Tent>
         <Scrollbar className={clsx({
-          'scrollbar-position-1': SectionID === 1,
-          'scrollbar-position-2': SectionID === 2,
+          'scrollbar-position-1': SectionID < 3,
+          'scrollbar-position-2': SectionID === 3,
         })}>
           <ScrollBarItem className={clsx({
-            'scrollbar-item-position-2': SectionID === 3
+            'scrollbar-item-position-2': SectionID === 4
           })} />
         </Scrollbar>
       </div>
