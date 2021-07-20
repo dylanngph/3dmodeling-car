@@ -9,7 +9,7 @@ const ContentBox = styled(Box)`
     position: absolute;
     line-height: 12px;
     transition: 1.5s;
-    bottom: -150px;
+    bottom: -160px;
     padding-left: 15px;
     p {
         color: #eee;
