@@ -11,6 +11,7 @@ import { FloatContent } from './component/FloatContent';
 import { CarDetail } from './component/CarDetail';
 import { CarModel } from './model/Car'
 import { TentModel } from './model/Tent'
+import {CampModel} from './model/Camp'
 
 const Section = styled(Box)`
   height:100%;
@@ -65,6 +66,19 @@ const Tent = styled(Box)`
     visibility:hidden;
     opacity:0;
 `
+const Camp = styled(Box)`
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 135px;
+    top: 482px; 
+    z-index: 5;
+    visibility:hidden;
+    transition: 1.5s;
+    opacity: 0;
+`
 const Scrollbar = styled(Box)`
     height: 150px;
     width: 6px;
@@ -84,6 +98,7 @@ const ScrollBarItem = styled(Box)`
     border-radius: 5px;
     z-index: 3;
 `
+
 function App() {
   //Biến ready kiểm tra xem Section đã scroll hết chưa và delay lại cho smooth scroll
   const [ready, setReady] = React.useState(true);
@@ -176,6 +191,17 @@ function App() {
         })}>
           <CarModel sectionID={SectionID}/>
         </Car>
+
+        
+        <Box className={clsx({
+          'road-box-1' : SectionID === 1,
+          'road-box-2' : SectionID === 2,
+          'road-box-hidden' : SectionID > 2
+        })}>
+            <div className="road-line line-1" />
+            <div className="road-line line-2" />
+        </Box>
+        
         <Tent className={clsx({
           'tent-position-1': SectionID < 3,
           'tent-position-2': SectionID === 3,
@@ -183,6 +209,15 @@ function App() {
         })}>
           <TentModel/>
         </Tent>
+
+        <Camp className={clsx({
+          'camp-position-1': SectionID < 3,
+          'camp-position-2': SectionID === 3,
+          'camp-position-3': SectionID === 4
+        })}>
+          <CampModel/>
+        </Camp>
+
         <Scrollbar className={clsx({
           'scrollbar-position-1': SectionID < 3,
           'scrollbar-position-2': SectionID === 3,
