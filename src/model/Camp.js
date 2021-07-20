@@ -20,7 +20,7 @@ export const CampModel = () => {
             <Suspense fallback={null}>
                 <Model/>
                 <ContactShadows position={[1, 1, 1]} opacity={1} width={1} height={1} blur={1} far={1} />
-                <OrbitControls   />
+                <OrbitControls enableRotate={false} enableZoom={false}   />
             </Suspense>
         </Canvas>
     </CampScene>
