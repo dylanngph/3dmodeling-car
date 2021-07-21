@@ -15,8 +15,7 @@ export const CarModel = (props) => {
     return (
     <CarScene>
         <Canvas camera={{position: [-5, 0.5, 8] , fov: 10 }}>
-        <ambientLight intensity={0.75} />
-        <directionalLight position={[0, 5, -4]} intensity={2} color="white" />
+       
         <fog attach="fog" args={['#fff', 0 , 40]} />
         <Suspense fallback={null}>
             <Model sectionID={sectionID}/>
