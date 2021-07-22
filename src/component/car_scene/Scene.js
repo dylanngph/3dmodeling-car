@@ -8,7 +8,7 @@ title: Range Rover Evoque
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useSpring, a } from '@react-spring/three'
 
 export default function Model(props) {
@@ -32,6 +32,24 @@ export default function Model(props) {
   });
   console.log(carAnimation)
   const { nodes, materials } = useGLTF('../../car/scene.gltf')
+  const camera = useThree((state) => state.camera);
+  const endNumb= 2;
+
+  React.useEffect(() => {
+    const timer1 = sectionID===4 && setInterval(() => {
+    camera.position.y += 0.05;
+    if (Math.floor(camera.position.y) === endNumb) clearInterval(timer1)
+  }, 10);   
+  }, [camera.position, sectionID]);
+
+  React.useEffect(() => {
+  const timer2 = sectionID !==4 && setInterval(() => {
+    camera.position.y -= 0.05;
+    if (Math.floor(camera.position.y) === 0) clearInterval(timer2)
+  }, 10);   
+  }, [camera.position, sectionID]);
+  
+  
   return (
     <a.group ref={group} {...props} dispose={null} rotation={carAnimation.rotation}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
