@@ -243,7 +243,7 @@
   height: 1080px;
   display: flex;
   flex-direction: column;
-  transform: rotate3d(18, -10, 11, 102deg);
+  transform: rotate3d(19, -10, 11, 96deg);
   /* transform: rotate3d(19, -11, 11, 97deg); */
   overflow: hidden;
   left: 100px;
@@ -257,7 +257,7 @@
   height: 1080px;
   display: flex;
   flex-direction: column;
-  transform: rotate3d(26, -10, 11, 95deg);
+  transform: rotate3d(24, -10, 11, 93deg);
   overflow: hidden;
   left: 100px;
   top: 20px;
@@ -272,16 +272,16 @@
   height: 40px;
   background: #fff;
   opacity: 0.4;
-  animation: SlideIn 0.8s infinite;
+  animation: SlideIn 1s infinite;
 }
 .line-1 {
   position: absolute;
-  top: 57%;
+  top: 53%;
   right: 6%;
 }
 .line-2 {
   position: absolute;
-  top: 31%;
+  top: 35%;
   right: 6%;
 }
 .camp-position-1 {
