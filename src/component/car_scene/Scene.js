@@ -38,6 +38,7 @@ export default function Model(props) {
   React.useEffect(() => {
     const timer1 = sectionID===4 && setInterval(() => {
     camera.position.y += 0.05;
+    camera.position.x -=0.05;
     if (Math.floor(camera.position.y) === endNumb) clearInterval(timer1)
   }, 10);   
   }, [camera.position, sectionID]);
@@ -45,6 +46,7 @@ export default function Model(props) {
   React.useEffect(() => {
   const timer2 = sectionID !==4 && setInterval(() => {
     camera.position.y -= 0.05;
+    camera.position.x +=0.05;
     if (Math.floor(camera.position.y) === 0) clearInterval(timer2)
   }, 10);   
   }, [camera.position, sectionID]);

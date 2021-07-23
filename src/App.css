@@ -243,7 +243,7 @@
   height: 1080px;
   display: flex;
   flex-direction: column;
-  transform: rotate3d(16, -10, 11, 105deg);
+  transform: rotate3d(18, -10, 11, 102deg);
   /* transform: rotate3d(19, -11, 11, 97deg); */
   overflow: hidden;
   left: 100px;
