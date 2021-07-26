@@ -8,9 +8,19 @@ title: Tent
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useFrame , useThree } from '@react-three/fiber'
+import * as THREE from 'three'
 
 export default function Model(props) {
+  const {sectionID} = props;
   const group = useRef()
+  
+  const camera = useThree((state) => state.camera);
+
+  useFrame(()=>{
+    sectionID === 4 ? camera.position.lerp(new THREE.Vector3(3, 0.8, 0),0.025):camera.position.lerp(new THREE.Vector3(3, 0.4, 0),0.025);
+  });
+
   const { nodes } = useGLTF('../../tent/scene.gltf')
   return (
     <group ref={group} {...props} dispose={null}>

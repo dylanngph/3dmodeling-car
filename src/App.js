@@ -73,7 +73,7 @@ const Camp = styled(Box)`
     justify-content: center;
     position: absolute;
     left: 135px;
-    top: 482px; 
+    top: 500px; 
     z-index: 5;
     visibility:hidden;
     transition: 1.5s;
@@ -207,7 +207,7 @@ function App() {
           'tent-position-2': SectionID === 3,
           'tent-position-3': SectionID === 4
         })}>
-          <TentModel/>
+          <TentModel sectionID={SectionID}/>
         </Tent>
 
         <Camp className={clsx({
@@ -215,7 +215,7 @@ function App() {
           'camp-position-2': SectionID === 3,
           'camp-position-3': SectionID === 4
         })}>
-          <CampModel/>
+          <CampModel sectionID={SectionID} />
         </Camp>
 
         <Scrollbar className={clsx({

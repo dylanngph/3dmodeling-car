@@ -8,8 +8,9 @@ title: Range Rover Evoque
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import { useFrame , useThree } from '@react-three/fiber'
 import { useSpring, a } from '@react-spring/three'
+import * as THREE from 'three'
 
 export default function Model(props) {
   const {sectionID} = props;
@@ -19,37 +20,21 @@ export default function Model(props) {
   const wheel3 = useRef();
   const wheel4 = useRef();
 
+  const camera = useThree((state) => state.camera);
+
   useFrame((state)=>{
     const t = state.clock.getElapsedTime();
     wheel1.current.rotation.x = sectionID < 3 && t * 5 * Math.PI;
     wheel2.current.rotation.x = sectionID < 3 && t * 5 * Math.PI;
     wheel3.current.rotation.x = sectionID < 3 && t * 5 * Math.PI;
     wheel4.current.rotation.x =  sectionID < 3 && t * 5 * Math.PI;
-   
+    sectionID === 4 ? camera.position.lerp(new THREE.Vector3(-5,2,8),0.025):camera.position.lerp(new THREE.Vector3(-5,0.5,8),0.025);
   });
   const carAnimation = useSpring({
       rotation: sectionID === 1 ? [0,0,0] : [0,0.2,0]
   });
   console.log(carAnimation)
   const { nodes, materials } = useGLTF('../../car/scene.gltf')
-  // const camera = useThree((state) => state.camera);
-  // const endNumb= 2;
-
-  // React.useEffect(() => {
-  //   const timer1 = sectionID===4 && setInterval(() => {
-  //   camera.position.y += 0.05;
-  //   camera.position.x -=0.05;
-  //   if (Math.floor(camera.position.y) === endNumb) clearInterval(timer1)
-  // }, 10);   
-  // }, [camera.position, sectionID]);
-
-  // React.useEffect(() => {
-  // const timer2 = sectionID !==4 && setInterval(() => {
-  //   camera.position.y -= 0.05;
-  //   camera.position.x +=0.05;
-  //   if (Math.floor(camera.position.y) === 0) clearInterval(timer2)
-  // }, 10);   
-  // }, [camera.position, sectionID]);
   
   
   return (

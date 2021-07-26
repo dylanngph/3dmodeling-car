@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Environment, OrbitControls , ContactShadows , useProgress , Html } from "@react-three/drei"
-import { Box  } from '@material-ui/core'
+import { Box, CircularProgress  } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography';
 import Model from '../component/car_scene/Scene'
 import styled from '@emotion/styled'
 
@@ -9,9 +10,30 @@ const CarScene = styled(Box)`
     height: 400px;
     width:100%;
 `
+function CircularProgressWithLabel(props) {
+    return (
+      <Box position="relative" display="inline-flex">
+        <CircularProgress variant="determinate" {...props} />
+        <Box
+          top={0}
+          left={0}
+          bottom={0}
+          right={0}
+          position="absolute"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
+            props.value,
+          )}%`}</Typography>
+        </Box>
+      </Box>
+    );
+  }
 function Loader() {
     const { progress } = useProgress()
-    return <Html center> {progress}% loaded</Html>
+    return <Html center> <CircularProgressWithLabel value={progress}/> </Html>
   }
 
 export const CarModel = (props) => {
