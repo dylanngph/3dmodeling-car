@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls , ContactShadows , Environment , useProgress, Html } from "@react-three/drei"
 import { Box, CircularProgress  } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Model from '../component/camp_scene/Scene'
 import styled from '@emotion/styled'
@@ -10,10 +11,18 @@ const CampScene = styled(Box)`
     height: 250px;
     width:250px;
 `
+const useStyles = makeStyles((theme) => ({
+  colorWhite: {
+    color: "#fff",
+  }
+}));
+
 function CircularProgressWithLabel(props) {
+  const classes = useStyles();
+
     return (
       <Box position="relative" display="inline-flex">
-        <CircularProgress variant="determinate" {...props} />
+        <CircularProgress className={classes.colorWhite} variant="determinate" {...props} />
         <Box
           top={0}
           left={0}
@@ -24,7 +33,7 @@ function CircularProgressWithLabel(props) {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
+          <Typography variant="caption" component="div" className={classes.colorWhite}>{`${Math.round(
             props.value,
           )}%`}</Typography>
         </Box>
