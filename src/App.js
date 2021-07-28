@@ -1,5 +1,5 @@
 import './App.css';
-import { Box } from '@material-ui/core'
+import { Box , CircularProgress } from '@material-ui/core'
 import styled from '@emotion/styled';
 import clsx from 'clsx';
 import React from 'react';
@@ -12,6 +12,12 @@ import { CarDetail } from './component/CarDetail';
 import { CarModel } from './model/Car'
 import { TentModel } from './model/Tent'
 import {CampModel} from './model/Camp'
+import { makeStyles } from '@material-ui/core/styles';
+import { useProgress} from "@react-three/drei"
+import Typography from '@material-ui/core/Typography'
+
+
+
 
 const Section = styled(Box)`
   height:100%;
@@ -140,8 +146,42 @@ function App() {
   console.log('SectionID', SectionID);
   console.log('ready', ready);
 
+
+  
+  function CircularProgressWithLabel(props) {
+    const useStyles = makeStyles((theme) => ({
+      colorWhite: {
+        color: "#fff",
+      }
+    }));
+    const classes = useStyles();
+  
+      return (
+        <Box position="relative" display="inline-flex">
+          <CircularProgress className={classes.colorWhite} variant="determinate" {...props}  />
+          <Box
+            top={0}
+            left={0}
+            bottom={0}
+            right={0}
+            position="absolute"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="caption" component="div" className={classes.colorWhite}>{`${Math.round(
+              props.value,
+            )}%`}</Typography>
+          </Box>
+        </Box>
+      );
+    }
+  
+  const { progress } = useProgress()
+
   return (
     <div className="body">
+      {progress !== 100 ? <CircularProgressWithLabel value={progress}/> :
       <div className="screen" onWheel={handleWheel}>
         <Navbar />
         <Section id="section-01" className={
@@ -227,6 +267,7 @@ function App() {
           })} />
         </Scrollbar>
       </div>
+    }
     </div>
   );
 }
